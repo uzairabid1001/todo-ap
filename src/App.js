@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+let [txt, setTxt] =  useState(""); 
+let [list,setlist] = useState([])
+let add = ()=>{
+  if (!txt){
+    alert("text is requires")
+    return;   
+  }  
+  list.push(txt);
+  setlist([...list]); 
+}
+let delte = ()=>{
+  setlist.push(0)
+}
+ 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+            <input className='inp'size={30} onChange ={(e)=>{
+                   setTxt(e.target.value);
+                                       
+            }
+          } />
+            <button className='btn' onClick = {add}>Add</button>
+            <button className='btn' onClick = {delte}>delte</button>
+            <ul>
+              {list.map((e,i)=>{
+                 return <li  
+             key = {i} >{e} </li>
+            })}
+            </ul>
+       </header>
     </div>
   );
 }
